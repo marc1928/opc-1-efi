@@ -1,6 +1,4 @@
 services:
   web: 
     build:
-      context: app
-      target: builder
-      - '8000:8000'
+     
