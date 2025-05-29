@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.4
 
 # 1. For build React app
-FROM node:lts AS development
+FROM public.ecr.aws/bigeye/registry.access.redhat.com/ubi8/nodejs-18-minimal:1-119 AS development
 
 # Set working directory
 WORKDIR /app
@@ -41,7 +41,8 @@ COPY --from=gloursdocker/docker / /
 CMD [ "npm", "start" ]
 
 # 2. For Nginx setup
-FROM nginx:alpine
+FROM public.ecr.aws/nginx/nginx:mainline
+#nginx:alpine
 
 # Copy config nginx
 COPY --from=build /app/.nginx/nginx.conf /etc/nginx/conf.d/default.conf
